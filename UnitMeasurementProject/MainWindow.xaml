@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnitMeasurementProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="609">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
 
+        <TextBox x:Name="txtInputValue" Margin="10" FontSize="30" />
+        <Label Content="=" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="35"/>
+        <TextBox x:Name="txtOutputValue" Margin="10" Grid.Column="2" IsEnabled="False" FontSize="30"/>
+
+
+        <TabControl Grid.Row="1" x:Name="fromTabControl" >
+            <TabItem Header="Weight">
+                <ListBox x:Name="listUnitsFromWeight"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+            <TabItem Header="Distance">
+                <ListBox x:Name="listUnitsFromDistance"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+            <TabItem Header="Volume">
+            <ListBox x:Name="listUnitsFromVolume"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+        </TabControl>
+        <TabControl Grid.Row="1" Grid.Column="2" x:Name="toTabControl" >
+            <TabItem Header="Weight">
+                <ListBox x:Name="listUnitsToWeight"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+            <TabItem Header="Distance">
+            <ListBox x:Name="listUnitsToDistance"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+            <TabItem Header="Volume">
+                <ListBox x:Name="listUnitsToVolume"
+                 SelectionChanged="ListUnits_SelectionChanged" 
+                 TextSearch.TextPath=""/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

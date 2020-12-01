@@ -1,5 +1,5 @@
 ﻿UnitMeasurementProject
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 T:\SoloWork\WPFProjects\UnitMeasurementProject\UnitMeasurementProject\UnitMeasurementProject\App.xaml
 11151548125
 
-6222248085
+4156824769
 1921654412462
 MainWindow.xaml;
 
-True
+False
 
