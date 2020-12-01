@@ -31,13 +31,14 @@ namespace UnitMeasurementProject
         {
             InitializeComponent();
             InitializeUnits();
-            InitalizeLists();
 
             txtInputValue.Text = "0";
 
             txtInputValue.TextChanged += txtInputValue_TextChanged;
             fromTabControl.SelectionChanged += TabControl_SelectionChanged;
             toTabControl.SelectionChanged += TabControl_SelectionChanged;
+            InitalizeLists();
+
         }
 
         public void ConvertUnit(Unit? unitFrom, Unit? unitTo, double value)
@@ -184,7 +185,6 @@ namespace UnitMeasurementProject
 
         private void txtInputValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox txtInput = sender as TextBox;
             ConvertUnit();
         }
 
@@ -221,8 +221,6 @@ namespace UnitMeasurementProject
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListListener(false);
-
             TabControl tc = sender as TabControl;
             TabItem ti = tc.SelectedItem as TabItem;
             ListBox listBox = ti.Content as ListBox;
@@ -239,9 +237,7 @@ namespace UnitMeasurementProject
                 fromTabControl.SelectionChanged += TabControl_SelectionChanged;
             }
 
-            txtOutputValue.Text = "";
-
-            ListListener(true);
+            //txtOutputValue.Text = "";
         }
 
         private void ListListener(bool add)
@@ -263,9 +259,6 @@ namespace UnitMeasurementProject
             listUnitsToVolume.ItemsSource = LstUnits.Where(x => x.Type == UnitType.Volume);
             listUnitsToDistance.ItemsSource = LstUnits.Where(x => x.Type == UnitType.Distance);
             listUnitsToWeight.ItemsSource = LstUnits.Where(x => x.Type == UnitType.Weight);
-
-            listUnitsFromWeight.SelectedIndex = 0;
-            listUnitsToWeight.SelectedIndex = 0;
 
             lstListBoxs.AddRange(new List<ListBox>() { listUnitsFromVolume, listUnitsFromDistance, listUnitsFromWeight, listUnitsToVolume, listUnitsToDistance, listUnitsToWeight });
             
