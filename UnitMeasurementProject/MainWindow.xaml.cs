@@ -41,19 +41,24 @@ namespace UnitMeasurementProject
 
         }
 
+        //Main Functionnality based on the Scale information located in each unit object
         public void ConvertUnit(Unit? unitFrom, Unit? unitTo, double value)
         {
             if(unitFrom.HasValue && unitTo.HasValue)
             {
-                double result = 0;
-                result = (value / unitFrom.Value.Scale) * unitTo.Value.Scale;
+                if(unitFrom.Value.Type == unitTo.Value.Type)
+                {
+                    double result = 0;
+                    result = (value / unitFrom.Value.Scale) * unitTo.Value.Scale;
 
-                txtOutputValue.Text = result.ToString();
+                    txtOutputValue.Text = result.ToString();
+                }
             }
            else
                 MessageBox.Show("Two units must be selected", "Alert", MessageBoxButton.OK, MessageBoxImage.Error); 
         }
 
+        //Should be replaced by a proper database
         public void InitializeUnits()
         {
             //Initializing distances
@@ -177,17 +182,19 @@ namespace UnitMeasurementProject
             lstUnits.AddRange(new List<Unit>() { meter, centimeter, kilometer, foot, inch, liter, centiliter, milliliter, cup, pint, gram, kilogram, ton, carat });
         }
 
+        //Trigger the Converter if a Unit is selected in a list
         private void ListUnits_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ConvertUnit();
         }
 
-
+        //Trigger the converter if the input text has changed
         private void txtInputValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             ConvertUnit();
         }
 
+        //Outside of the main functionnality we can implement more security before starting the calculus
         private void ConvertUnit()
         {
             try 
@@ -208,6 +215,7 @@ namespace UnitMeasurementProject
             return listBox.SelectedItem as Unit?;
         }
 
+        //cheap double regex
         bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -219,6 +227,7 @@ namespace UnitMeasurementProject
             return true;
         }
 
+        // UI control to smoothly switch from UnitType to avoid "mixed Unit Type" problems
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabControl tc = sender as TabControl;
@@ -236,8 +245,6 @@ namespace UnitMeasurementProject
                 fromTabControl.SelectedIndex = tc.SelectedIndex;
                 fromTabControl.SelectionChanged += TabControl_SelectionChanged;
             }
-
-            //txtOutputValue.Text = "";
         }
 
         private void ListListener(bool add)

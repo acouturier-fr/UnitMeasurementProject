@@ -32,6 +32,7 @@ namespace UnitMeasurementProject.Classes
         Distance,
         Volume
     }
+    //Not used in the end, but usefull for sorting values depending on the location of the user
     internal enum Localisation
     {
         US,
